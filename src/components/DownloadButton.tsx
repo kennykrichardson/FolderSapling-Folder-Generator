@@ -1,4 +1,3 @@
-
 import { Download } from 'lucide-react';
 
 type Props = {

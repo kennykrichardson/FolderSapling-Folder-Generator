@@ -54,7 +54,7 @@ export default function TreePreview({ nodes }: Props) {
     );
 
   return (
-    <section className="panel preview-panel">
+    <section className="panel preview-panel glass">
       <div className="panel-heading">
         <div>
           <span className="eyebrow">02 / PREVIEW</span>
@@ -71,7 +71,7 @@ export default function TreePreview({ nodes }: Props) {
           <p>Your project tree will appear here.</p>
         </div>
       ) : (
-        <div className="tree-list">
+        <div className="tree-list glass">
           {nodes.map((node, index) => (
             <TreeItem
               key={`${node.name}-${index}`}

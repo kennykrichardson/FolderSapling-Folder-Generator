@@ -1,7 +1,6 @@
 
 import { useState } from 'react';
-import { ArrowRight, ShieldCheck } from 'lucide-react';
-import Header from './components/Header';
+import { ArrowRight, ShieldCheck, Sprout } from 'lucide-react';
 import StructureEditor from './components/StructureEditor';
 import TreePreview from './components/TreePreview';
 import DownloadButton from './components/DownloadButton';
@@ -9,14 +8,16 @@ import { parseStructure } from './lib/parser';
 import type { TreeNode } from './lib/parser';
 import { downloadZip } from './lib/zip';
 
-const starter = `my-project/
+const starter = `
+my-project/
 ├── src/
 │   ├── main.py
 │   └── utils.py
 ├── tests/
 │   └── test_main.py
 ├── README.md
-└── requirements.txt`;
+└── requirements.txt
+`;
 
 export default function App() {
   const [structure, setStructure] = useState(starter);
@@ -55,26 +56,23 @@ export default function App() {
 
   return (
     <div className="app-shell">
-      <Header />
 
       <main className="main-content">
-        <section className="hero">
-          <div className="hero-tag">
-            <span className="status-dot" />
-            YOUR AI BLUEPRINT, MADE REAL
-          </div>
 
+        <section className="hero">
           <h1>
-            Ideas deserve
-            <br />
-            <span>to take root.</span>
+            Ideas deserve...
+            <span> to take root.</span>
           </h1>
 
-          <p className="hero-description">
-            Turn AI-generated folder structures into real
-            project files. No tedious setup. Just paste,
-            grow, and get building.
-          </p>
+          <div className="hero-tag glass">
+            <span className="brand-icon">
+              <Sprout size={22} />
+            </span>            
+              <a className="brand" href="/" aria-label="Sapling home">
+                <span>YOUR AI BLUEPRINT MADE REAL, BY SAPLING</span>
+              </a>
+          </div>
         </section>
 
         <section className="workspace">
@@ -96,7 +94,7 @@ export default function App() {
           <TreePreview nodes={nodes} />
         </section>
 
-        <section className="action-bar">
+        <section className="action-bar glass">
           <div className="action-copy">
             <ShieldCheck size={20} />
             <div>
@@ -118,7 +116,11 @@ export default function App() {
         )}
 
         <footer className="footer">
-          Made for builders, one branch at a time. 🌱
+          Made for builders, one branch at a time,
+          By <a href="https://github.com/kennykrichardson"
+                target="_blank"
+                rel="noopener noreferrer">
+                KENNY RICHARDSON</a> 🌱.
         </footer>
       </main>
     </div>
