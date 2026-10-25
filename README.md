@@ -97,9 +97,13 @@ npm run preview
 - 🪶 **Keep it simple:** the core workflow is designed to run in the browser without a dedicated backend.
 - 🧩 **Bring your own blueprint:** use the AI agent or workflow you already like.
 
-## 🖼️ Screenshots
+# 🖼️ Screenshots
 
-<!-- Add screenshots of Sapling here. Keep this section when adding project screenshots. -->
+## 🖥️ FolderSapling
+
+![FolderSapling](screenshots/foldersapling.png)
+
+---
 
 _Add your screenshots to this section to show Sapling in action._ 📸
 

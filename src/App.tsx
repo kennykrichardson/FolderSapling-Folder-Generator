@@ -70,9 +70,10 @@ export default function App() {
           <div className="hero-tag glass">
             <span className="brand-icon">
               <Sprout size={22} />
-            </span>            
+            </span> 
+            YOUR AI BLUEPRINT MADE REAL, BY            
               <a className="brand" href="/" aria-label="Sapling home">
-                <span>YOUR AI BLUEPRINT MADE REAL, BY SAPLING</span>
+                <span>SAPLING</span>
               </a>
           </div>
         </section>

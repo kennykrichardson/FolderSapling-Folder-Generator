@@ -1,5 +1,5 @@
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Float, Sparkles } from "@react-three/drei";
+import { Float } from "@react-three/drei";
 import { useMemo, useRef } from "react";
 import type { Points } from "three";
 import * as THREE from "three";
@@ -18,9 +18,9 @@ function StarMesh({ count, reduced }: { count: number; reduced: boolean }) {
   }, [count]);
 
   useFrame((state) => {
-    if (!ref.current || reduced) return;
-    ref.current.rotation.y = state.clock.elapsedTime * 0.018;
-    ref.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.12) * 0.025;
+    if (!ref.current) return;
+    ref.current.rotation.y = state.clock.elapsedTime * (reduced ? 0.006 : 0.055);
+    ref.current.rotation.x = Math.sin(state.clock.elapsedTime * (reduced ? 0.04 : 0.22)) * (reduced ? 0.008 : 0.035);
   });
 
   return (
@@ -28,7 +28,7 @@ function StarMesh({ count, reduced }: { count: number; reduced: boolean }) {
       <bufferGeometry>
         <bufferAttribute attach="attributes-position" args={[positions, 3]} />
       </bufferGeometry>
-      <pointsMaterial color="#315c43" size={0.045} transparent opacity={0.88} blending={THREE.NormalBlending} depthWrite={false} sizeAttenuation={true} />
+      <pointsMaterial color="#315c43" size={0.028} transparent opacity={0.68} blending={THREE.NormalBlending} depthWrite={false} sizeAttenuation />
     </points>
   );
 }
@@ -54,10 +54,7 @@ export function ParticleField() {
   return (
     <div className="foldersapling-particle-field" aria-hidden="true">
       <Canvas dpr={[1, 1.5]} camera={{ position: [0, 0, 5.5], fov: 52 }} gl={{ antialias: false, alpha: true }}>
-        <ambientLight intensity={0.55} />
-        <pointLight position={[4, 2, 3]} color="#a8d5a2" intensity={3.5} />
-        <StarMesh count={reduced ? 180 : 420} reduced={reduced} />
-        <Sparkles count={reduced ? 18 : 65} scale={[12, 7, 5]} size={2.1} speed={reduced ? 0 : 0.24} color="#315c43" opacity={0.8} />
+        <StarMesh count={reduced ? 260 : 950} reduced={reduced} />
         {/* <RedMoon /> */}
       </Canvas>
     </div>
