@@ -188,3 +188,29 @@
     transition: none;
   }
 }
+
+
+/* Top-right GitHub action */
+.sapling-github-link {
+  position: fixed;
+  top: 22px;
+  right: 24px;
+  z-index: 20;
+  text-decoration: none;
+}
+
+.sapling-github-link .sapling-button {
+  box-sizing: border-box;
+}
+
+@media (max-width: 760px) {
+  .sapling-github-link {
+    top: 12px;
+    right: 12px;
+  }
+  .sapling-github-link .sapling-button {
+    min-height: 42px;
+    padding-inline: 14px;
+    font-size: 11px;
+  }
+}

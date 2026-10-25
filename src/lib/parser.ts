@@ -247,7 +247,6 @@ function looksLikeFlatPaths(lines: string[]): boolean {
 function parseFlatPaths(input: string): TreeNode[] {
   const rawLines = input.replace(/^\uFEFF/, '').split(/\r?\n/);
   const roots: TreeNode[] = [];
-  const rootMap = new Map<string, TreeNode>();
 
   function getOrCreate(
     siblings: TreeNode[],

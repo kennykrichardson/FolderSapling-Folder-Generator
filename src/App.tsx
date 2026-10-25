@@ -1,28 +1,16 @@
 
 import { useState } from 'react';
-import { ArrowRight, Sprout } from 'lucide-react';
+import { ArrowRight, Sprout, Github } from 'lucide-react';
 import StructureEditor from './components/StructureEditor';
 import TreePreview from './components/TreePreview';
 import { parseStructure } from './lib/parser';
 import type { TreeNode } from './lib/parser';
 import { downloadZip } from './lib/zip';
 
-const starter = `
-my-project/
-├── src/
-│   ├── main.py
-│   └── utils.py
-├── tests/
-│   └── test_main.py
-├── README.md
-└── requirements.txt
-`;
 
 export default function App() {
-  const [structure, setStructure] = useState(starter);
-  const [nodes, setNodes] = useState<TreeNode[]>(() =>
-    parseStructure(starter)
-  );
+  const [structure, setStructure] = useState('');
+  const [nodes, setNodes] = useState<TreeNode[]>([]);
   const [error, setError] = useState('');
   const [message, setMessage] = useState('');
 
@@ -55,6 +43,19 @@ export default function App() {
 
   return (
     <div className="app-shell">
+
+      <a
+        className="sapling-github-link sapling-button-frame sapling-button-frame--compact"
+        href="https://github.com/kennykrichardson"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Visit my GitHub profile"
+      >
+        <span className="sapling-button">
+          <Github size={17} aria-hidden="true" />
+          MY GITHUB
+        </span>
+      </a>
 
       <main className="main-content">
 
@@ -105,7 +106,7 @@ export default function App() {
 
         <footer className="footer">
           Made for builders, one branch at a time,
-          By <a href="https://github.com/kennykrichardson"
+          By <a href="https://kennykrichardson.onrender.com"
                 target="_blank"
                 rel="noopener noreferrer">
                 KENNY RICHARDSON</a> 🌱.

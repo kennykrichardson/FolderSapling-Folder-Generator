@@ -1,5 +1,4 @@
 import { ClipboardPaste, Sparkles } from 'lucide-react';
-import './SaplingButton.css';
 
 type Props = {
   value: string;
@@ -32,7 +31,7 @@ export default function StructureEditor({
         className="structure-input"
         value={value}
         onChange={(event) => onChange(event.target.value)}
-        placeholder={'my-project/\\n├── src/\\n│   ├── main.py\\n│   └── utils.py\\n└── README.md'}
+        placeholder="Paste any folder structure from your preferred AI agent here..."
         spellCheck={false}
         aria-label="Project folder structure"
       />
