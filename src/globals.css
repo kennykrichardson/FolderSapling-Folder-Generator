@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
 
 :root {
@@ -657,10 +656,8 @@ button:disabled {
   }
 }
 
-
-/* GitHub profile link: preserve the floating desktop placement. */
-.app-shell > .sapling-github-link,
-.foldersapling-app > .sapling-github-link {
+/* GitHub profile link: floating in the desktop corner. */
+.app-shell .hero > .sapling-github-link {
   position: fixed;
   top: 24px;
   right: 26px;
@@ -669,32 +666,48 @@ button:disabled {
   margin: 0;
 }
 
-/* Prevent the hero's top margin from exposing a strip of the page background. */
+/* Prevent the hero heading's top margin from exposing a strip above the page. */
 .app-shell {
   display: flow-root;
 }
 
-/* On mobile, the GitHub link should read as part of the hero rather than a
-   floating corner control. This layout applies when the link is inside .hero. */
+/* Keep the button in the hero's normal flow on phones, directly below the heading. */
 @media (max-width: 760px) {
-  .hero .sapling-github-link {
+  .app-shell .hero {
+    display: flow-root;
+    padding-top: 5px;
+  }
+
+  .app-shell .hero h1 {
+    margin-top: 24px;
+    margin-bottom: 0;
+    font-size: clamp(38px, 10vw, 52px);
+    line-height: 1.12;
+    letter-spacing: -2.2px;
+    overflow-wrap: normal;
+  }
+
+  .app-shell .hero > .sapling-github-link {
     position: static;
     display: flex;
     width: max-content;
     max-width: 100%;
-    margin: 18px auto 0;
+    margin: 18px auto 28px;
     transform: none;
   }
 
-  .hero .sapling-github-link .sapling-button-frame,
-  .hero .sapling-github-link .sapling-button {
+  .app-shell .hero > .sapling-github-link .sapling-button-frame,
+  .app-shell .hero > .sapling-github-link .sapling-button {
     width: auto;
     max-width: 100%;
   }
 
-  /* Keep the compact GitHub control comfortable to tap on small screens. */
-  .hero .sapling-github-link .sapling-button {
-    min-height: 42px;
+  .app-shell .hero > .sapling-github-link .sapling-button {
+    min-height: 44px;
     padding-inline: 16px;
+  }
+
+  .app-shell .hero-tag {
+    max-width: 100%;
   }
 }
