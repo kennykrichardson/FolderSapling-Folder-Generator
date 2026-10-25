@@ -611,3 +611,75 @@ button:disabled {
     width: 100%;
   }
 }
+
+.foldersapling-app {
+  position: relative;
+  isolation: isolate;
+  display: flow-root;
+  min-height: 100vh;
+  overflow: clip;
+  background:
+    radial-gradient(circle at 16% 12%, rgba(111, 189, 120, 0.13), transparent 28rem),
+    radial-gradient(circle at 86% 82%, rgba(168, 213, 162, 0.10), transparent 30rem),
+    #f5f7ef;
+  color: #20382a;
+}
+
+.foldersapling-particle-field {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 1;
+  background:
+    radial-gradient(ellipse at 18% 24%, rgba(111, 189, 120, 0.09), transparent 34rem),
+    radial-gradient(ellipse at 82% 78%, rgba(49, 92, 67, 0.07), transparent 36rem);
+}
+
+.foldersapling-particle-field canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Keep the canvas above the background image, but behind the interface. */
+.foldersapling-app > .main-content,
+.foldersapling-app > .sapling-github-link {
+  position: relative;
+  z-index: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .foldersapling-particle-field {
+    opacity: 0.42;
+  }
+}
+
+/* Keep the GitHub link pinned to the viewport's top-right corner. */
+.foldersapling-app > .sapling-github-link {
+  position: fixed;
+  top: 24px;
+  right: 26px;
+  z-index: 20;
+  width: auto;
+  margin: 0;
+}
+
+/* The compact GitHub button must not inherit full-width action styles. */
+.foldersapling-app > .sapling-github-link.sapling-button-frame--compact {
+  display: inline-flex;
+  min-width: max-content;
+}
+
+.foldersapling-app > .sapling-github-link .sapling-button {
+  width: auto;
+  min-width: max-content;
+}
+
+@media (max-width: 760px) {
+  .foldersapling-app > .sapling-github-link {
+    top: 12px;
+    right: 12px;
+  }
+}

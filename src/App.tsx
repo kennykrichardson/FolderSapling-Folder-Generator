@@ -1,6 +1,7 @@
 
 import { useState } from 'react';
 import { ArrowRight, Sprout, Github } from 'lucide-react';
+import { ParticleField } from './components/ParticleField';
 import StructureEditor from './components/StructureEditor';
 import TreePreview from './components/TreePreview';
 import { parseStructure } from './lib/parser';
@@ -42,7 +43,8 @@ export default function App() {
   }
 
   return (
-    <div className="app-shell">
+    <div className="app-shell foldersapling-app">
+      <ParticleField />
 
       <a
         className="sapling-github-link sapling-button-frame sapling-button-frame--compact"
