@@ -1,9 +1,12 @@
 
 import { File, Folder, FolderOpen } from 'lucide-react';
+import DownloadButton from './DownloadButton';
 import type { TreeNode } from '../lib/parser';
 
 type Props = {
   nodes: TreeNode[];
+  onDownload: () => void;
+  downloadDisabled: boolean;
 };
 
 function TreeItem({ node, depth = 0 }: {
@@ -45,7 +48,7 @@ function TreeItem({ node, depth = 0 }: {
   );
 }
 
-export default function TreePreview({ nodes }: Props) {
+export default function TreePreview({ nodes, onDownload, downloadDisabled }: Props) {
   const count = (items: TreeNode[]): number =>
     items.reduce(
       (total, node) =>
@@ -71,7 +74,7 @@ export default function TreePreview({ nodes }: Props) {
           <p>Your project tree will appear here.</p>
         </div>
       ) : (
-        <div className="tree-list glass">
+        <div className="tree-list">
           {nodes.map((node, index) => (
             <TreeItem
               key={`${node.name}-${index}`}
@@ -84,6 +87,13 @@ export default function TreePreview({ nodes }: Props) {
       <div className="preview-footer">
         <span className="status-dot" />
         <span>Ready to grow</span>
+      </div>
+
+      <div className="tree-download-action">
+        <DownloadButton
+          onDownload={onDownload}
+          disabled={downloadDisabled}
+        />
       </div>
     </section>
   );

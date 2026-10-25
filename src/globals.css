@@ -57,8 +57,8 @@ button:disabled {
   background-size: cover;
   background-position: center;
 
-  filter: blur(4px);
-  transform: scale(1.1); /* prevents blurred edges */
+  filter: blur(1px);
+  transform: scale(1.1);
 
   z-index: -1;
 }
@@ -66,7 +66,7 @@ button:disabled {
 .brand, .footer a {
   display: inline-flex;
   gap: 10px;
-  color: inherit;
+  color: #171717;
   text-decoration: none;
   font-family: 'Manrope', sans-serif;
   font-weight: 1000;
@@ -152,7 +152,7 @@ button:disabled {
   grid-template-columns: 1fr 36px 1fr;
   align-items: stretch;
   gap: 12px;
-  opacity: 0.75;
+  opacity: 1;
 }
 
 .panel {
@@ -163,6 +163,15 @@ button:disabled {
   background: #fffefa;
   box-shadow: 0 8px 28px #30382005;
   opacity: 1;
+}
+
+/* The outer editor/preview surfaces stay translucent; the controls remain crisp. */
+.panel.glass {
+  background: rgba(248, 244, 232, 0.28);
+  border-color: rgba(255, 255, 255, 0.38);
+  box-shadow:
+    0 8px 26px rgba(28, 35, 22, 0.10),
+    inset 0 1px 0 rgba(255, 255, 255, 0.28);
 }
 
 .panel-heading {
@@ -196,21 +205,24 @@ button:disabled {
   min-height: 290px;
   resize: vertical;
   padding: 16px;
-  border: 1px solid var(--border);
-  border-radius: 11px;
+  border: 1px solid rgba(255, 255, 255, 0.42);
+  border-radius: 12px;
   outline: none;
-  background: #fafaf6;
+  background: rgba(255, 252, 245, 0.16);
   color: #353c33;
   font-family: 'Consolas', 'Courier New', monospace;
   font-size: 12px;
   line-height: 1.9;
   tab-size: 2;
-  transition: border-color 0.2s;
+  box-shadow: inset 0 1px 2px rgba(40, 42, 32, 0.035);
+  transition: border-color 0.2s, background-color 0.2s, box-shadow 0.2s;
   opacity: 1;
 }
 
 .structure-input:focus {
-  border-color: #71947a;
+  border-color: rgba(49, 92, 67, 0.62);
+  background: rgba(255, 252, 245, 0.24);
+  box-shadow: 0 0 0 3px rgba(49, 92, 67, 0.08);
 }
 
 .structure-input::placeholder {
@@ -280,9 +292,10 @@ button:disabled {
   overflow: auto;
   margin-top: 24px;
   padding: 10px 0;
-  border: 1px solid var(--border);
-  border-radius: 11px;
-  background: #fafaf6;
+  border: 1px solid rgba(255, 255, 255, 0.40);
+  border-radius: 12px;
+  background: rgba(255, 252, 245, 0.18);
+  box-shadow: inset 0 1px 2px rgba(40, 42, 32, 0.025);
 }
 
 .tree-item {
@@ -353,7 +366,7 @@ button:disabled {
   padding: 18px 22px;
   border: 1px solid var(--border);
   border-radius: 15px;
-  background: #fafaf6;
+  background: rgba(248, 244, 232, 0.30);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -361,15 +374,15 @@ button:disabled {
 }
 
 .glass {
-  background: rgba(246, 248, 247, 0.35);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 24px;
-
+  /* One subtle, warm translucent surface, like Lexyra's input column. */
+  background: rgba(248, 244, 232, 0.30);
+  -webkit-backdrop-filter: blur(3px) saturate(108%);
+  backdrop-filter: blur(3px) saturate(108%);
+  border: 1px solid rgba(255, 255, 255, 0.34);
+  border-radius: 20px;
   box-shadow:
-    0 8px 32px rgba(16, 34, 3, 0.432);
+    0 8px 24px rgba(28, 35, 22, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.30);
 }
 
 .action-copy {
@@ -497,4 +510,104 @@ button:disabled {
 * {
   scrollbar-width: thin;
   scrollbar-color: #315c43 transparent;
+}
+
+.tree-download-action {
+  display: flex;
+  justify-content: stretch;
+  margin-top: 18px;
+}
+
+.tree-download-action .sapling-button-frame {
+  width: 100%;
+}
+
+.tree-download-action .sapling-button {
+  width: 100%;
+}
+
+
+
+/* === Matched editor and preview layout === */
+.workspace {
+  align-items: stretch;
+}
+
+/* Both panels use the same vertical layout and inner width. */
+.editor-panel,
+.preview-panel {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* Keep the two custom button frames and buttons exactly the same width. */
+.editor-panel > .sapling-button-frame--full,
+.preview-panel > .tree-download-action,
+.preview-panel .tree-download-action > .sapling-button-frame {
+  width: 100%;
+  min-width: 0;
+}
+
+.editor-panel > .sapling-button-frame--full,
+.preview-panel .tree-download-action > .sapling-button-frame {
+  display: flex;
+}
+
+.editor-panel > .sapling-button-frame--full > .sapling-button,
+.preview-panel .tree-download-action > .sapling-button-frame > .sapling-button {
+  display: inline-flex;
+  width: 100%;
+  min-width: 0;
+  min-height: 48px;
+  justify-content: center;
+}
+
+/* Let the editable tree and preview tree share the available vertical space.
+   The actions then sit on the same baseline even when the preview is empty. */
+.editor-panel .structure-input,
+.preview-panel .tree-list,
+.preview-panel .empty-state {
+  flex: 1 1 auto;
+}
+
+.editor-panel .structure-input {
+  min-height: 290px;
+}
+
+.preview-panel .tree-list,
+.preview-panel .empty-state {
+  min-height: 290px;
+}
+
+.editor-panel > .sapling-button-frame--full {
+  margin-top: 15px;
+}
+
+.preview-panel .tree-download-action {
+  display: flex;
+  justify-content: stretch;
+  margin-top: auto;
+  padding-top: 18px;
+}
+
+/* Remove the previous compact sizing so both buttons use identical dimensions. */
+.preview-panel .tree-download-action .sapling-button-frame--compact .sapling-button,
+.editor-panel .sapling-button-frame--full .sapling-button {
+  box-sizing: border-box;
+  padding-inline: 18px;
+}
+
+@media (max-width: 760px) {
+  .editor-panel .structure-input,
+  .preview-panel .tree-list,
+  .preview-panel .empty-state {
+    flex: initial;
+  }
+
+  .editor-panel > .sapling-button-frame--full,
+  .preview-panel .tree-download-action,
+  .preview-panel .tree-download-action > .sapling-button-frame {
+    width: 100%;
+  }
 }

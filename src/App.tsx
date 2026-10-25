@@ -1,9 +1,8 @@
 
 import { useState } from 'react';
-import { ArrowRight, ShieldCheck, Sprout } from 'lucide-react';
+import { ArrowRight, Sprout } from 'lucide-react';
 import StructureEditor from './components/StructureEditor';
 import TreePreview from './components/TreePreview';
-import DownloadButton from './components/DownloadButton';
 import { parseStructure } from './lib/parser';
 import type { TreeNode } from './lib/parser';
 import { downloadZip } from './lib/zip';
@@ -91,21 +90,10 @@ export default function App() {
             <ArrowRight size={20} />
           </div>
 
-          <TreePreview nodes={nodes} />
-        </section>
-
-        <section className="action-bar glass">
-          <div className="action-copy">
-            <ShieldCheck size={20} />
-            <div>
-              <strong>Grown on your device.</strong>
-              <p>No account. No upload. No nonsense.</p>
-            </div>
-          </div>
-
-          <DownloadButton
+          <TreePreview
+            nodes={nodes}
             onDownload={handleDownload}
-            disabled={nodes.length === 0}
+            downloadDisabled={nodes.length === 0}
           />
         </section>
 
