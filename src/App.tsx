@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { ArrowRight, Sprout, Github } from 'lucide-react';
 import { ParticleField } from './components/ParticleField';
@@ -46,19 +45,6 @@ export default function App() {
     <div className="app-shell foldersapling-app">
       <ParticleField />
 
-      <a
-        className="sapling-github-link sapling-button-frame sapling-button-frame--compact"
-        href="https://github.com/kennykrichardson"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Visit my GitHub profile"
-      >
-        <span className="sapling-button">
-          <Github size={17} aria-hidden="true" />
-          MY GITHUB
-        </span>
-      </a>
-
       <main className="main-content">
 
         <section className="hero">
@@ -67,13 +53,25 @@ export default function App() {
             <span> to take root.</span>
           </h1>
 
+          <a
+            className="sapling-github-link sapling-button-frame sapling-button-frame--compact"
+            href="https://github.com/kennykrichardson"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Visit my GitHub profile"
+          >
+            <span className="sapling-button">
+              <Github size={17} aria-hidden="true" />
+              MY GITHUB
+            </span>
+          </a>
+
           <div className="hero-tag glass">
             <span className="brand-icon">
               <Sprout size={22} />
-            </span> 
-            YOUR AI BLUEPRINT MADE REAL, BY            
+            </span>            
               <a className="brand" href="/" aria-label="Sapling home">
-                <span>SAPLING</span>
+                <span>YOUR AI BLUEPRINT MADE REAL, BY SAPLING</span>
               </a>
           </div>
         </section>

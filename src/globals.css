@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
 
 :root {
@@ -86,7 +85,7 @@ button:disabled {
   place-items: center;
   width: 38px;
   height: 38px;
-  color: #171717;
+  color: var(--green);
   background: transparent;
   border-radius: 12px;
 }
@@ -654,5 +653,61 @@ button:disabled {
 @media (prefers-reduced-motion: reduce) {
   .foldersapling-particle-field {
     opacity: 0.42;
+  }
+}
+
+/* GitHub profile link: floating in the desktop corner. */
+.app-shell .hero > .sapling-github-link {
+  position: fixed;
+  top: 24px;
+  right: 26px;
+  z-index: 20;
+  width: auto;
+  margin: 0;
+}
+
+/* Prevent the hero heading's top margin from exposing a strip above the page. */
+.app-shell {
+  display: flow-root;
+}
+
+/* Keep the button in the hero's normal flow on phones, directly below the heading. */
+@media (max-width: 760px) {
+  .app-shell .hero {
+    display: flow-root;
+    padding-top: 5px;
+  }
+
+  .app-shell .hero h1 {
+    margin-top: 24px;
+    margin-bottom: 0;
+    font-size: clamp(38px, 10vw, 52px);
+    line-height: 1.12;
+    letter-spacing: -2.2px;
+    overflow-wrap: normal;
+  }
+
+  .app-shell .hero > .sapling-github-link {
+    position: static;
+    display: flex;
+    width: max-content;
+    max-width: 100%;
+    margin: 18px auto 28px;
+    transform: none;
+  }
+
+  .app-shell .hero > .sapling-github-link .sapling-button-frame,
+  .app-shell .hero > .sapling-github-link .sapling-button {
+    width: auto;
+    max-width: 100%;
+  }
+
+  .app-shell .hero > .sapling-github-link .sapling-button {
+    min-height: 44px;
+    padding-inline: 16px;
+  }
+
+  .app-shell .hero-tag {
+    max-width: 100%;
   }
 }
